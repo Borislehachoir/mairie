@@ -1,0 +1,273 @@
+/* ===== Main ===== */
+
+/* === Layout général du main === */
+.content {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 100px auto 50px;
+  padding: 0 2rem;
+}
+
+/* Titre + ligne coupée */
+.section-title {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.service-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.service-info img {
+  width: 300px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.service-text {
+  flex: 1;
+}
+.social-icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.8rem;
+}
+
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #0b446f;
+  transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #198754; /* vert du hover */
+  transform: scale(1.15);
+}
+
+/* === Spécifique au logo image (La Poste) === */
+.logo-wrapper {
+  position: relative;
+  width: 26px;
+  height: 26px;
+}
+
+.social-logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 30px;
+  max-height: 30px;
+  object-fit: contain;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.hover-logo {
+  opacity: 0;
+}
+
+.logo-wrapper:hover .hover-logo {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.logo-wrapper:hover .default-logo {
+  opacity: 0;
+}
+
+/* === TABLEAU D’HORAIRES === */
+.hours {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+  font-size: 1.2rem;
+  text-align: center;
+  position: flex;
+}
+
+.header-row {
+  background-color: rgb(212, 212, 212);
+  color: #0b446f;
+  font-weight: 700;
+  font-size: 1.3rem;
+  border: 1px solid #a0a0a0;
+  border-radius: 8px;
+}
+
+.hours td {
+  padding: 12px 16px;
+}
+
+
+tr.white-bordered {
+  background-color: #ffffff;
+  border: 1px solid #0b446f;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+tr.grey {
+  background-color: #f1f1f1;
+  border: 1px solid #a0a0a0;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+tr.closed-day {
+  background-color: #ffeaea;
+  border: 1px solid #ffb3b3;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+}
+
+
+tr.white-bordered:hover, 
+tr.grey:hover,
+tr.closed-day:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+
+.closed {
+  color: red;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+
+.closed-day .closed {
+  text-align: center;
+}
+
+.dropdown-service summary {
+  cursor: pointer;
+  background-color: #e9f1f4;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.dropdown-service[open] summary {
+  background-color: #c9e2ea;
+}
+
+.dropdown-service {
+  margin-bottom: 1.5rem;
+}
+
+.dropdown-service[open] {
+  margin-bottom: 2rem;
+}
+
+.dropdown-service > *:not(summary) {
+  margin-top: 0.8rem;
+}
+
+
+/* === Colonne droite === */
+.news .highlight-news {
+  margin-bottom: 2rem;
+}
+
+.news .highlight-news h3 a {
+  color: #0e5f9e;
+  text-decoration: none;
+}
+
+.news .highlight-news h3 a:hover {
+  text-decoration: underline;
+}
+
+.news .highlight-news .date {
+  color: gray;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.btn-news {
+  background-color: white;
+  color: #0e5f9e;
+  border: 2px solid #0e5f9e;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-news:hover {
+  background-color: #0e5f9e;
+  color: white;
+}
+
+
+/* === Galerie === */
+.gallery-container {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  margin: 2rem auto;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.gallery {
+  display: flex;
+  transition: transform 0.8s ease-in-out;
+  width: 100%;
+}
+
+.gallery img {
+  width: 100%;
+  flex-shrink: 0;
+   max-height: 200px;
+  display: block;
+  object-fit: cover;
+}
+
+/* Contrôles de galerie */
+.gallery-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+  z-index: 500;
+}
+
+.gallery-controls button {
+  background-color: transparent;
+  color: black;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.gallery-controls button:hover {
+  background-color: rgb(138, 138, 138);
+  color: white;
+  transform: scale(1.1);
+}
+
+#counter {
+  font-weight: 600;
+  color: #333;
+}

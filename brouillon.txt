@@ -1,0 +1,58 @@
+#0e5f9e -> header
+blanc -> main
+#d1dfe9-> footer
+
+#a0bfb4 -> page où on se trouve (si survol, revient vers bleu de base)
+
+
+Besoin prendre photos Salle des fêtes
+
+Questions à poser pour actualiser mon site web :
+
+Quels sont les horaires de la bibliothèque municipale ? 
+Les horaires du CCAS
+
+Pour le groupe qui organise des activités pour nos Anciens, qui contacter, quand et à quelle heure ça a lieu, quelles activités il y a là-bas, quel âge ont les adhérents en moyenne, etc
+
+Petit historique de la salle des fêtes ? Genre, demander quand est-ce qu'elle a été construite, 
+µquels gros évènements elle a pu accueillir depuis son inauguration, les coordonnées des entreprises actuellement présentes au rez-de-chaussée 
+et les services qu'elles proposent ? Aussi, voir quand le stade a été créé parce qu'on le voit ni lui ni le parking ni le petit jardin d'enfants qu'on voit en y allant maintenant. 
+
+https://sisco.toutemonecole.fr/informations --> site officiel de l'école
+
+https://data.education.gouv.fr/explore/dataset/fr-en-ecoles-effectifs-nb_classes/table/?disjunctive.rentree_scolaire&disjunctive.region_academique&disjunctive.academie&disjunctive.departement&disjunctive.commune&disjunctive.numero_ecole&disjunctive.denomination_principale&disjunctive.patronyme&disjunctive.secteur&disjunctive.code_postal&sort=-commune&refine.academie=CORSE&refine.code_postal=20233
+Si y'a besoin d'une source pour dire que maintenant y'a 71 élèves (+ possibilité intégrer diagramme e-charts)
+
+Quelles démarches souhaitent-ils proposer ? Veulent-ils un formulaire pour que l'utilisateur puisse joindre ses informations, et que la mairie les reçoive directement sur une boîte mail attribuée ? 
+
+https://www.facebook.com/MairiedeSisco/ --> pour de jolies photos que je pourrais ajouter
+
+
+Pour service eau, se baser sur données  disponibles sur site du gouvernement : https://orobnat.sante.gouv.fr/orobnat/rechercherResultatQualite.do
+Possibilité proposer données sous forme interactive, avec bar charts pour comparer niveau bactéries / chlore/ etc. 
+
+Voir si modèle pour nouvel abonné est toujours d'actualité. 
+
+A la place de la page : "le sentier et carte géographique", possibilité proposer plusieurs sentiers de randonnées et une intégration interactive d'une carte OpenStreetMap/Google Maps/ IGN ou équivalent, 
+avec petites cartes interactives pour obtenir infos stockées dans une base de données comme le nom officiel de la boucle, la durée estimée, le niveau de difficulté, etc. 
+
+
+
+
+Lundi – Mardi – Jeudi – Vendredi
+
+8 heures -16 heures 15
+
+———
+
+Mercredi
+
+8 heures – 13 heures
+
+———-
+
+Samedi
+
+8 heures -12 heures
+
+Le secrétariat est fermé le samedi

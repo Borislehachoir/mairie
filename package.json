@@ -1,0 +1,19 @@
+{
+  "name": "mairie-sisco-copie",
+  "version": "1.0.0",
+  "description": "__Partie motivationnelle du projet__",
+  "main": "login-verif.js",
+  "dependencies": {
+    "express": "^5.1.0",
+    "lucide-react": "^0.548.0",
+    "node-fetch": "^3.3.2",
+    "react": "^19.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
