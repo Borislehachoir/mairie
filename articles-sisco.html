@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
     <link rel="stylesheet" href="styles-articles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     </head>
 <body>
 
@@ -95,10 +96,11 @@
 <main class="content">
 
 <h2 style="text-align:center; margin-top:20px;">Actualités de la commune</h2>
+    
+    <input type="text" id="messageInput" placeholder="Écris un truc...">
+    <button onclick="envoyerMessage()">Envoyer</button>
 
-<!-- ===== GALERIE ===== -->
-<div class="galerie">
-</div>
+    <ul id="listeMessages"></ul>
 </main>
 
 <!-- ==== FOOTER ==== -->

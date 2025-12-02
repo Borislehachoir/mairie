@@ -1,77 +1,43 @@
 
-  const projectId = "0ytuv043"; // 👈 ton project ID
-  const dataset = "mairie";
-  const apiVersion = "2023-10-01";
+        // 1. CONFIGURATION
+        const supabaseUrl = 'TON_URL_SUPABASE' // Celle de ton image
+        const supabaseKey = 'TA_CLE_ANON_PUBLIC' // Celle du menu API Keys
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
 
-  async function fetchArticles() {
-  try {
-    const query = encodeURIComponent(`*[_type == "article"]{
-      title,
-      date,
-      "imageUrl": image.asset->url,
-      content,
-      category->{title, slug}
-    } | order(date desc)`);
+        // 2. FONCTION POUR LIRE LES MESSAGES
+        async function chargerMessages() {
+            // On demande tout le contenu de la table 'messages'
+            let { data: messages, error } = await supabase
+                .from('messages')
+                .select('*')
 
-    const url = `https://${projectId}.api.sanity.io/v${apiVersion}/data/query/${dataset}?query=${query}`;
-    const response = await fetch(url);
+            if (error) console.log("Erreur:", error)
+            else {
+                // On vide la liste et on la remplit
+                const liste = document.getElementById('listeMessages')
+                liste.innerHTML = "" 
+                messages.forEach(msg => {
+                    liste.innerHTML += `<li>${msg.content}</li>`
+                })
+            }
+        }
 
-    if (!response.ok) throw new Error(`Erreur API Sanity: ${response.status}`);
+        // 3. FONCTION POUR AJOUTER UN MESSAGE
+        async function envoyerMessage() {
+            const texte = document.getElementById('messageInput').value
+            
+            // On insère dans la base
+            const { error } = await supabase
+                .from('messages')
+                .insert({ content: texte }) // Assure-toi d'avoir une colonne 'content'
 
-    const data = await response.json();
-    console.log("Résultat Sanity :", data); // 👈 pour debug
+            if (error) alert("Erreur d'envoi")
+            else {
+                document.getElementById('messageInput').value = "" // On vide le champ
+                chargerMessages() // On recharge la liste
+            }
+        }
 
-    return data.result;
-  } catch (err) {
-    console.error("Erreur lors du fetch des articles :", err);
-    return [];
-  }
-}
-
-  async function displayArticles() {
-    const container = document.querySelector(".galerie");
-    container.innerHTML = "<p>Chargement des articles...</p>";
-
-    const articles = await fetchArticles();
-
-    if (!articles?.length) {
-      container.innerHTML = "<p>Aucun article pour le moment.</p>";
-      return;
-    }
-
-    container.innerHTML = "";
-
-    articles.forEach((a, i) => {
-      const div = document.createElement("div");
-      div.className = "poeme";
-      div.style.backgroundImage = `url('${a.imageUrl || "img/default.jpg"}')`;
-      div.onclick = () => openModal(`modal${i}`);
-
-      div.innerHTML = `<div class="poeme-title">${a.title}</div>`;
-      container.appendChild(div);
-
-      const modal = document.createElement("div");
-      modal.className = "modal hidden";
-      modal.id = `modal${i}`;
-      modal.innerHTML = `
-        <div class="modal-content">
-          <span class="close" onclick="closeModal('modal${i}')">&times;</span>
-          <h2>${a.title}</h2>
-          <p>${a.content
-            ?.map(block => block.children.map(c => c.text).join(''))
-            .join('<br>') || ''}</p>
-        </div>
-      `;
-      document.body.appendChild(modal);
-    });
-  }
-
-  displayArticles();
-
-  // Gestion modales
-  window.openModal = (id) => document.getElementById(id).classList.remove("hidden");
-  window.closeModal = (id) => document.getElementById(id).classList.add("hidden");
-
-  document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("modal")) e.target.classList.add("hidden");
-  });
+        // On charge les messages au démarrage de la page
+        chargerMessages()
+  
