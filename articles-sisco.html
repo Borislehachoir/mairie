@@ -33,8 +33,9 @@
                 const liste = document.getElementById('listeArticles')
                 liste.innerHTML = "" 
                 articles.forEach(msg => {
-                    liste.innerHTML += `<li>${articles.content}</li>`
-                })
+                  // Si ta colonne s'appelle 'content', sinon utilise le vrai nom de ta colonne (ex: 'texte')
+                liste.innerHTML += `<li>${msg.description}</li>` 
+            })
             }
         }
 
