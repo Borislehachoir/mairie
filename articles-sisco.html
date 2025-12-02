@@ -2,17 +2,17 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Test Messages</title>
+    <title>Test Articles</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
-    <h1>Mes Messages</h1>
+    <h1>Mes Articles</h1>
     
-    <input type="text" id="messageInput" placeholder="Écris un truc...">
-    <button onclick="envoyerMessage()">Envoyer</button>
+    <input type="text" id="ArticleInput" placeholder="Écris un truc...">
+    <button onclick="envoyerArticle()">Envoyer</button>
 
-    <ul id="listeMessages"></ul>
+    <ul id="listeArticles"></ul>
 
     <script>
         // 1. CONFIGURATION
@@ -21,26 +21,26 @@
         const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
 
         // 2. FONCTION POUR LIRE LES MESSAGES
-        async function chargerMessages() {
-            // On demande tout le contenu de la table 'messages'
-            let { data: messages, error } = await supabase
+        async function chargerArticles() {
+            
+            let { data: articles, error } = await supabase
                 .from('articles')
                 .select('*')
 
             if (error) console.log("Erreur:", error)
             else {
                 // On vide la liste et on la remplit
-                const liste = document.getElementById('listeMessages')
+                const liste = document.getElementById('listeArticles')
                 liste.innerHTML = "" 
-                messages.forEach(msg => {
-                    liste.innerHTML += `<li>${msg.content}</li>`
+                articles.forEach(msg => {
+                    liste.innerHTML += `<li>${articles.content}</li>`
                 })
             }
         }
 
         // 3. FONCTION POUR AJOUTER UN MESSAGE
-        async function envoyerMessage() {
-            const texte = document.getElementById('messageInput').value
+        async function envoyerArticle() {
+            const texte = document.getElementById('ArticleInput').value
             
             // On insère dans la base
             const { error } = await supabase
@@ -49,13 +49,13 @@
 
             if (error) alert("Erreur d'envoi")
             else {
-                document.getElementById('messageInput').value = "" // On vide le champ
-                chargerMessages() // On recharge la liste
+                document.getElementById('ArticleInput').value = "" // On vide le champ
+                chargerArticles() // On recharge la liste
             }
         }
 
         // On charge les messages au démarrage de la page
-        chargerMessages()
+        chargerArticles()
     </script>
 </body>
 </html>
