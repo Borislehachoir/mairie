@@ -1,7 +1,7 @@
 
         // 1. CONFIGURATION
-        const supabaseUrl = 'TON_URL_SUPABASE' // Celle de ton image
-        const supabaseKey = 'TA_CLE_ANON_PUBLIC' // Celle du menu API Keys
+        const supabaseUrl = 'https://xduuevajjufhvvhkipcy.supabase.co' // Celle de ton image
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhkdXVldmFqanVmaHZ2aGtpcGN5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2OTU1NTEsImV4cCI6MjA4MDI3MTU1MX0.80TpFnuxPzM9q9XpKHnp_Pp7OBmCZlFx-LyLPf3bilE' // Celle du menu API Keys
         const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
 
         // 2. FONCTION POUR LIRE LES MESSAGES
