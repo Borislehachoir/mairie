@@ -1,43 +1,53 @@
+// 1. CONFIGURATION
+    const supabaseUrl = 'https://xduuevajjufhvvhkipcy.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhkdXVldmFqanVmaHZ2aGtpcGN5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2OTU1NTEsImV4cCI6MjA4MDI3MTU1MX0.80TpFnuxPzM9q9XpKHnp_Pp7OBmCZlFx-LyLPf3bilE';
+    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-        // 1. CONFIGURATION
-        const supabaseUrl = 'https://xduuevajjufhvvhkipcy.supabase.co' // Celle de ton image
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhkdXVldmFqanVmaHZ2aGtpcGN5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2OTU1NTEsImV4cCI6MjA4MDI3MTU1MX0.80TpFnuxPzM9q9XpKHnp_Pp7OBmCZlFx-LyLPf3bilE' // Celle du menu API Keys
-        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
+   async function chargerArticles() {
+    // 2a. Récupération des données
+    let { data: articles, error } = await supabase
+        .from('articles') 
+        .select('*')      
 
-        // 2. FONCTION POUR LIRE LES MESSAGES
-        async function chargerMessages() {
-            // On demande tout le contenu de la table 'messages'
-            let { data: messages, error } = await supabase
-                .from('messages')
-                .select('*')
+    if (error) {
+        console.error("Erreur de chargement des articles:", error);
+    } 
+    // VÉRIFICATION : Si le tableau est vide, on affiche un message (utile pour le debug)
+    else if (!articles || articles.length === 0) { 
+        document.getElementById('listeArticles').innerHTML = 
+            "<p style='padding: 20px; text-align: center;'>Aucun article trouvé. Vérifiez votre Table Editor dans Supabase.</p>";
+    }
+    
+    else {
+        const conteneur = document.getElementById('listeArticles');
+        conteneur.innerHTML = ""; 
 
-            if (error) console.log("Erreur:", error)
-            else {
-                // On vide la liste et on la remplit
-                const liste = document.getElementById('listeMessages')
-                liste.innerHTML = "" 
-                messages.forEach(msg => {
-                    liste.innerHTML += `<li>${msg.content}</li>`
-                })
-            }
-        }
-
-        // 3. FONCTION POUR AJOUTER UN MESSAGE
-        async function envoyerMessage() {
-            const texte = document.getElementById('messageInput').value
+        articles.forEach(article => {
             
-            // On insère dans la base
-            const { error } = await supabase
-                .from('messages')
-                .insert({ content: texte }) // Assure-toi d'avoir une colonne 'content'
-
-            if (error) alert("Erreur d'envoi")
-            else {
-                document.getElementById('messageInput').value = "" // On vide le champ
-                chargerMessages() // On recharge la liste
+            // 1. UTILISATION DU CHAMP 'date' pour la date
+            // On vérifie que la date existe avant de la formater
+            let dateAffichage = 'Date non spécifiée';
+            if (article.date) {
+                 dateAffichage = new Date(article.date).toLocaleDateString('fr-FR', {
+                    year: 'numeric', month: 'long', day: 'numeric'
+                });
             }
-        }
 
-        // On charge les messages au démarrage de la page
-        chargerMessages()
-  
+            // 2. CONSTRUCTION DU HTML AVEC LES NOUVEAUX CHAMPS
+            conteneur.innerHTML += `
+                <div class="grid-item-card">
+                    
+                    <img src="${article.img}" alt="${article.name}" class="gallery-image">
+                    
+                    <div class="grid-overlay-bandeau">
+                        <h4>${article.name}</h4> 
+                        <p>Publié le ${dateAffichage}</p>
+                    </div>
+                </div>
+            `;
+        });
+    }
+}
+
+// Déclenchement au chargement de la page
+chargerArticles();
