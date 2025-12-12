@@ -22,30 +22,31 @@
         const conteneur = document.getElementById('listeArticles');
         conteneur.innerHTML = ""; 
 
-        articles.forEach(article => {
-            
-            // 1. UTILISATION DU CHAMP 'date' pour la date
-            // On vérifie que la date existe avant de la formater
-            let dateAffichage = 'Date non spécifiée';
-            if (article.date) {
-                 dateAffichage = new Date(article.date).toLocaleDateString('fr-FR', {
-                    year: 'numeric', month: 'long', day: 'numeric'
-                });
-            }
+            articles.forEach(article => {   
+                let dateAffichage = 'Date non spécifiée';
+                    if (article.date) {
+                        dateAffichage = new Date(article.date).toLocaleDateString('fr-FR', {
+                            year: 'numeric', month: 'long', day: 'numeric'
+            });
+        }
 
-            // 2. CONSTRUCTION DU HTML AVEC LES NOUVEAUX CHAMPS
-            conteneur.innerHTML += `
-                <div class="grid-item-card">
-                    
-                    <img src="${article.img}" alt="${article.name}" class="gallery-image">
-                    
-                    <div class="grid-overlay-bandeau">
-                        <h4>${article.name}</h4> 
-                        <p>Publié le ${dateAffichage}</p>
-                    </div>
-                </div>
-            `;
-        });
+        const lienArticle = `page-article.html?id=${article.id}`; 
+
+        conteneur.innerHTML += `
+            <a href="${lienArticle}" class="grid-item-card"> 
+            
+            <img src="${article.img}" alt="${article.name}" class="card-image-content">
+            
+            <div class="image-overlay-opacity"></div> 
+
+            <div class="grid-overlay-bandeau">
+                <h4>${article.name}</h4> 
+                <p>Publié le ${dateAffichage}</p>
+            </div>
+            
+        </a>
+    `;
+    });
     }
 }
 
